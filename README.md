@@ -40,7 +40,7 @@ go mod tidy
 ## 🐳 Docker
 
 O banco de dados PostgreSQL pode ser executado via Docker para facilitar o setup local.
-
+```
 services:
   postgres:
     image: postgres:17
@@ -52,3 +52,4 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+```
