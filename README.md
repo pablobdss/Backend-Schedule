@@ -35,7 +35,7 @@ git clone https://github.com/pablobdss/Backend-Schedule.git
 cd Backend-Schedule
 docker-compose up -d
 go mod tidy
-
+```
 
 ## 🐳 Docker
 
