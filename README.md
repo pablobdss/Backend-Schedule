@@ -1,6 +1,6 @@
 # Backend Schedule - API em Golang
 
-API REST de agendamento para barbearias com autenticação via JWT, banco de dados PostgreSQL e estrutura modular. Projeto em construção por etapas para meu portfólio.
+API REST de agendamento para barbearias com autenticação via JWT, banco de dados PostgreSQL e estrutura modular. Projeto em construção por etapas.
 
 ## Visão Geral
 
