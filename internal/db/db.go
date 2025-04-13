@@ -10,6 +10,13 @@ import (
 	_ "github.com/lib/pq"
 )
 
+func init() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Erro ao carregar .env")
+	}
+}
+
 func Connect() (*sql.DB, error) {
 	user := os.Getenv("POSTGRES_USER")
 	pass := os.Getenv("POSTGRES_PASSWORD")
@@ -27,9 +34,3 @@ func Connect() (*sql.DB, error) {
 	return conn, nil
 }
 
-func init() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Erro ao carregar .env")
-	}
-}
