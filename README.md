@@ -14,6 +14,8 @@ Esta API permite:
 Esta é a **Versão 1 (MVP Backend)**, focada em fundações sólidas:
 estrutura de pastas, autenticação e integração com PostgreSQL.
 
+---
+
 ## 🚦 Status da Versão
 
 - ✅ Setup inicial do projeto
@@ -23,6 +25,7 @@ estrutura de pastas, autenticação e integração com PostgreSQL.
 - ✅ Rota protegida `/dashboard` testada
 - 🔜 CRUD e Validações de agendamentos
 
+---
 
 ## 📂 Estrutura de Pastas (V1)
 
@@ -34,6 +37,8 @@ estrutura de pastas, autenticação e integração com PostgreSQL.
 - `pkg/models` # Structs e DTOs compartilhados
 - `docker-compose.yaml`  # Serviço PostgreSQL
 
+---
+
 ## Estrutura do Projeto
 
 ## ⚙️ Tecnologias
@@ -43,6 +48,8 @@ estrutura de pastas, autenticação e integração com PostgreSQL.
 - Docker + Docker Compose
 - JWT (via `github.com/golang-jwt/jwt/v5`)
 - Variáveis de ambiente com `godotenv`
+
+---
 
 ### Passos
 
@@ -63,6 +70,9 @@ estrutura de pastas, autenticação e integração com PostgreSQL.
 5. Execute o projeto:
   go run cmd/api/main.go
 ```
+
+---
+
 ## 📬 Endpoints (Versão 1)
 
 ### POST /register
@@ -83,6 +93,8 @@ estrutura de pastas, autenticação e integração com PostgreSQL.
 ### GET /dashboard
   Requer Authorization: Bearer <token>
 
+---
+
 ## 🐳 Docker
 
 O banco de dados PostgreSQL pode ser executado via Docker para facilitar o setup local.
@@ -99,6 +111,8 @@ services:
     ports:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"
 ```
+
+---
 
 ## 📍 Roadmap de Evolução
 
