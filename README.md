@@ -132,3 +132,10 @@ services:
 - Chatbot explicativo com OpenAI
 - Agendamentos com validação de horários
 - Integração de pagamento (Simulado)
+
+---
+
+## Contribuindo
+
+Este projeto faz parte do meu portfólio pessoal e meu aprendizado com Go. Feedbacks construtivos são muito bem vindos!
+Sinta-se a vontade para abrir uma issue ou me chamar no LinkedIn!
