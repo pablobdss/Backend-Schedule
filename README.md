@@ -1,5 +1,7 @@
 # Backend Schedule - Golang API
 
+> 🇧🇷 [Leia em Português](./README.pt-br.md)
+
 REST API for barbershop appointments using JWT authentication, PostgreSQL database, and modular project structure. Built in stages for professional portfolio purposes.
 
 ## Overview
