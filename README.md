@@ -1,79 +1,81 @@
-# Backend Schedule - API em Golang
+# Backend Schedule - Golang API
 
-API REST de agendamento para barbearias com autenticação via JWT, banco de dados PostgreSQL e estrutura modular. Projeto em construção por etapas.
+REST API for barbershop appointments using JWT authentication, PostgreSQL database, and modular project structure. Built in stages for professional portfolio purposes.
 
-## Visão Geral
+## Overview
 
-Esta API permite:
+This API provides:
 
-- Cadastro e login de usuários com senha criptografada
-- Geração de JWT para autenticação
-- Middleware de proteção de rotas
-- Agendamentos (nas próximas versões)
+- User registration and login with encrypted passwords
+- JWT token generation for authentication
+- Route protection via middleware
+- Appointments (in future versions)
 
-Esta é a **Versão 1 (MVP Backend)**, focada em fundações sólidas:
-estrutura de pastas, autenticação e integração com PostgreSQL.
-
----
-
-## 🚦 Status da Versão
-
-- ✅ Setup inicial do projeto
-- ✅ Conexão com banco PostgreSQL via Docker
-- ✅ Registro e login de usuários com validação
-- ✅ Middleware de autenticação com JWT
-- ✅ Rota protegida `/dashboard` testada
-- 🔜 CRUD e Validações de agendamentos
+You're viewing **Version 1 (Backend MVP)** — focused on solid foundations:
+folder structure, authentication, and PostgreSQL integration.
 
 ---
 
-## 📂 Estrutura de Pastas (V1)
+## 🚦 Version Status
 
-- `cmd/api` # Ponto de entrada principal (main.go)
-- `internal/db` # Conexão e utilitários do banco
-- `internal/user` # Lógica de negócio, handlers, serviços
-- `internal/auth` # Hash e Verify da senha | Geração e validação de JWT
-- `internal/middleware` # Middlewares de autenticação, logger, etc
-- `pkg/models` # Structs e DTOs compartilhados
-- `docker-compose.yaml`  # Serviço PostgreSQL
+- ✅ Initial project setup
+- ✅ PostgreSQL database connection via Docker
+- ✅ User registration and login with validation
+- ✅ JWT-based authentication middleware
+- ✅ Protected `/dashboard` route tested
+- 🔜 Appointment CRUD and validations
 
 ---
 
-## Estrutura do Projeto
+## 📂 Folder Structure (V1)
 
-## ⚙️ Tecnologias
+- `cmd/api` – Main entry point (main.go)
+- `internal/db` – Database connection and utilities
+- `internal/user` – Business logic, handlers, and services
+- `internal/auth` – Password hash/verify | JWT generation/validation
+- `internal/middleware` – Auth, error and logging middlewares
+- `pkg/models` – Shared structs and DTOs
+- `docker-compose.yaml` – PostgreSQL service setup
+
+---
+
+## ⚙️ Tech Stack
 
 - Go 1.23.4
 - PostgreSQL 17
 - Docker + Docker Compose
-- JWT (via `github.com/golang-jwt/jwt/v5`)
-- Variáveis de ambiente com `godotenv`
+- JWT (`github.com/golang-jwt/jwt/v5`)
+- Env vars with `godotenv`
 
 ---
 
-### Passos
+## 🚀 Getting Started
 
 ```bash
-1. Clone o repositório
-  git clone https://github.com/pablobdss/Backend-Schedule.git
-  cd Backend-Schedule
-2. Crie o arquivo .env com suas variáveis:
-  POSTGRES_USER=seu_user
-  POSTGRES_PASSWORD=sua_senha
-  POSTGRES_DB=seu_db
-  POSTGRES_PORT=sua_porta
-  JWT_SECRET=sua_senha_segura
-3. Suba o banco de dados com Docker:
-  docker-compose up -d
-4. Instale as dependências:
-  go mod tidy
-5. Execute o projeto:
-  go run cmd/api/main.go
+1. Clone the repository
+   git clone https://github.com/pablobdss/Backend-Schedule.git
+   cd Backend-Schedule
+
+2. Create a `.env` file with your environment variables:
+   POSTGRES_USER=your_user
+   POSTGRES_PASSWORD=your_password
+   POSTGRES_DB=your_db
+   POSTGRES_PORT=your_port
+   JWT_SECRET=your_secure_jwt_secret
+
+3. Start PostgreSQL with Docker:
+   docker-compose up -d
+
+4. Install dependencies:
+   go mod tidy
+
+5. Run the project:
+   go run cmd/api/main.go
 ```
 
 ---
 
-## 📬 Endpoints (Versão 1)
+## 📬 Endpoints (Version 1)
 
 ### POST /register
 ```json
@@ -86,18 +88,18 @@ estrutura de pastas, autenticação e integração com PostgreSQL.
 ### POST /login
 ``` json
 {
-  "email": "seu@example.com",
-  "password": "suapassword123"
+  "email": "your@example.com",
+  "password": "your_password123"
 }
 ```
 ### GET /dashboard
-  Requer Authorization: Bearer <token>
+  Requires: Authorization: Bearer <token>
 
 ---
 
 ## 🐳 Docker
 
-O banco de dados PostgreSQL pode ser executado via Docker para facilitar o setup local.
+You can run PostgreSQL locally using Docker:
 ```
 services:
   postgres:
@@ -114,28 +116,27 @@ services:
 
 ---
 
-## 📍 Roadmap de Evolução
+## 📍 Roadmap
 
-### 🧱 Versão 2 – Infraestrutura & Segurança (em breve)
+### 🧱 Version 2 – Infrastructure & Security (coming soon)
 
-- [ ] Dockerizar o backend Go
-- [ ] Middleware de autenticação com verificação de expiração do JWT
-- [ ] Rate limiting básico (por IP)
-- [ ] Middleware global de tratamento de erros
-- [ ] Logs estruturados com zerolog ou zap
-- [ ] Testes básicos nas rotas principais
-- [ ] Atualização do README com uso via Docker
+- [ ] Dockerize the Go backend
+- [ ] JWT expiration validation
+- [ ] Basic rate limiting (by IP)
+- [ ] Global error handling middleware
+- [ ] Structured logs with zerolog or zap
+- [ ] Basic tests for main routes
+- [ ] Updated README with Docker usage
 
-### ✨ Versão 3 – Experiência Real de Produto (visão futura)
+### ✨ Version 3 – Product Experience (future vision)
 
-- Integração com Frontend Typescript React/Next.js
-- Chatbot explicativo com OpenAI
-- Agendamentos com validação de horários
-- Integração de pagamento (Simulado)
+- Frontend integration (TypeScript React/Next.js)
+- OpenAI-powered chatbot for haircut assistance
+- Appointment system with availability validation
+- Payment integration (simulated)
 
 ---
 
-## Contribuindo
+## Contributing
 
-Este projeto faz parte do meu portfólio pessoal e meu aprendizado com Go. Feedbacks construtivos são muito bem vindos!
-Sinta-se a vontade para abrir uma issue ou me chamar no LinkedIn!
+This project is part of my personal learning journey and portfolio with Go. Feel free to reach out on LinkedIn for feedback or suggestions!
