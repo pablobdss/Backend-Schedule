@@ -1,5 +1,7 @@
 # Backend Schedule - API em Golang
 
+🇺🇸 [Read in English](./README.md)
+
 API REST de agendamento para barbearias com autenticação via JWT, banco de dados PostgreSQL e estrutura modular. Projeto em construção por etapas.
 
 ## Visão Geral
