@@ -2,7 +2,7 @@
 
 > 🇺🇸 [Read in English](./README.md)
 
-API REST de agendamento para barbearias com autenticação via JWT, banco de dados PostgreSQL e estrutura modular. Projeto em construção por etapas.
+API REST de agendamento para barbearias com autenticação via JWT, banco de dados PostgreSQL e estrutura modular. Projeto em construção por etapas. Os commits com atualizações estarei fazendo no Sábado ou Domingo, já que tenho mais tempo para organizar.
 
 ## Visão Geral
 
