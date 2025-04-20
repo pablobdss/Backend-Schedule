@@ -25,7 +25,8 @@ folder structure, authentication, and PostgreSQL integration.
 - ✅ User registration and login with validation
 - ✅ JWT-based authentication middleware
 - ✅ Protected `/dashboard` route tested
-- 🔜 Appointment CRUD and validations
+- ✅ Appointment CRUD (using Chi router for HTTP method matching)
+- 🔄 Validations (no overlapping slots, past‐date bookings, enforce 08:00‑18:00) & structured error logging
 
 ---
 
@@ -36,6 +37,7 @@ folder structure, authentication, and PostgreSQL integration.
 - `internal/user` – Business logic, handlers, and services
 - `internal/auth` – Password hash/verify | JWT generation/validation
 - `internal/middleware` – Auth, error and logging middlewares
+- `internal/schedule` – Appointments handlers, services, repo, utils  
 - `pkg/models` – Shared structs and DTOs
 - `docker-compose.yaml` – PostgreSQL service setup
 
@@ -79,23 +81,17 @@ folder structure, authentication, and PostgreSQL integration.
 
 ## 📬 Endpoints (Version 1)
 
-### POST /register
-```json
-{
-  "name": "João Barber",
-  "email": "joao@example.com",
-  "password": "secure123"
-}
-```
-### POST /login
-``` json
-{
-  "email": "your@example.com",
-  "password": "your_password123"
-}
-```
-### GET /dashboard
-  Requires: Authorization: Bearer <token>
+### Public
+- `POST /register`  
+- `POST /login`  
+
+### Protected (header `Authorization: Bearer <token>`)
+- `GET  /dashboard`  
+- **Appointments CRUD**  
+  - `POST   /schedules`  
+  - `GET    /schedules`  
+  - `PUT    /schedules/{id}`  
+  - `DELETE /schedules/{id}`  
 
 ---
 
