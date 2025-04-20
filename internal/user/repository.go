@@ -37,11 +37,15 @@ func FindByEmail(db *sql.DB, email string) (*User, error) {
 
 	var u User
 
-	if err == sql.ErrNoRows { return nil, errors.New("user not found") }
+	row := stmt.QueryRow(email)
+    err = row.Scan(&u.ID, &u.Name, &u.Email, &u.Password)
+    if err == sql.ErrNoRows {
+        return nil, errors.New("user not found")
+    }
+    if err != nil {
+        return nil, err
+    }
 
-	if err := stmt.QueryRow(email).Scan(&u.ID, &u.Name, &u.Email, &u.Password); err != nil {
-		return nil, err
-}
-	
+
 	return &u, nil
 }

@@ -12,8 +12,8 @@ type contextKey string
 
 const userIDKey contextKey = "userID"
 
-func AuthMiddleware(next http.Handler) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
+func AuthMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		authHeader := r.Header.Get("Authorization")
 		if !strings.HasPrefix(authHeader, "Bearer ") {
 			http.Error(w, "Missing or invalid Authorization header", http.StatusUnauthorized)
@@ -32,7 +32,7 @@ func AuthMiddleware(next http.Handler) http.HandlerFunc {
 
 		next.ServeHTTP(w, r.WithContext(ctx))
 
-	}
+	})
 
 }
 

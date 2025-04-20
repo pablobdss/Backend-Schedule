@@ -4,16 +4,17 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
 	"github.com/pablobdss/Backend-Schedule/internal/db"
 	"github.com/pablobdss/Backend-Schedule/internal/middleware"
+	"github.com/pablobdss/Backend-Schedule/internal/schedule"
 	"github.com/pablobdss/Backend-Schedule/internal/user"
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Erro ao carregar .env")
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("Error to load .env")
 	}
 
 	conn, err := db.Connect()
@@ -22,12 +23,21 @@ func main() {
 	}
 	defer conn.Close()
 
-	mux := http.NewServeMux()
+	r := chi.NewRouter()
 
-	mux.HandleFunc("/register", user.RegisterHandler(conn))
-	mux.HandleFunc("/login", user.LoginHandler(conn))
+	r.Post("/register", user.RegisterHandler(conn))
+	r.Post("/login", user.LoginHandler(conn))
 
-	mux.Handle("/dashboard", middleware.AuthMiddleware(http.HandlerFunc(user.DashboardHandler(conn))))
+	r.With(middleware.AuthMiddleware).Get("/dashboard", user.DashboardHandler(conn))
 
-	http.ListenAndServe(":8080", mux)
+	r.Route("/schedules", func(r chi.Router) {
+		r.With(middleware.AuthMiddleware).Post("/", schedule.CreateScheduleHandler(conn))
+		r.With(middleware.AuthMiddleware).Get("/", schedule.GetSchedulesHandler(conn))
+		r.With(middleware.AuthMiddleware).Put("/{id}", schedule.UpdateScheduleHandler(conn))
+		r.With(middleware.AuthMiddleware).Delete("/{id}", schedule.DeleteScheduleHandler(conn))
+	})
+
+	log.Println("Server running on :8080")
+
+	http.ListenAndServe(":8080", r)
 }
