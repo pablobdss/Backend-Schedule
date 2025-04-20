@@ -2,7 +2,7 @@
 
 > 🇧🇷 [Leia em Português](./README.pt-br.md)
 
-REST API for barbershop appointments using JWT authentication, PostgreSQL database, and modular project structure. Built in stages for professional portfolio purposes.
+REST API for barbershop appointments using JWT authentication, PostgreSQL database, and modular project structure. Built in stages for professional portfolio purposes. Commits with Update will be on Saturdays or Sundays.
 
 ## Overview
 
