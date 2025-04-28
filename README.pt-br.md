@@ -11,7 +11,7 @@ Esta API permite:
 - Cadastro e login de usuários com senha criptografada
 - Geração de JWT para autenticação
 - Middleware de proteção de rotas
-- Agendamentos (nas próximas versões)
+- Agendamentos
 
 Esta é a **Versão 1 (MVP Backend)**, focada em fundações sólidas:
 estrutura de pastas, autenticação e integração com PostgreSQL.
