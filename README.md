@@ -11,7 +11,7 @@ This API provides:
 - User registration and login with encrypted passwords
 - JWT token generation for authentication
 - Route protection via middleware
-- Appointments (in future versions)
+- Appointments
 
 You're viewing **Version 1 (Backend MVP)** — focused on solid foundations:
 folder structure, authentication, and PostgreSQL integration.
