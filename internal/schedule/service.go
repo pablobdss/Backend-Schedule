@@ -2,6 +2,7 @@ package schedule
 
 import (
 	"database/sql"
+	"time"
 )
 
 func InsertScheduleService(db *sql.DB, userID, date, scheduledTime string) (*ScheduleResponse, error) {
@@ -13,6 +14,20 @@ func InsertScheduleService(db *sql.DB, userID, date, scheduledTime string) (*Sch
 	err = ValidateScheduleInput(userID, parsedDate, parsedTime)
 	if err != nil {
 		return nil, err
+	}
+
+	if IsInThePast(parsedDate, parsedTime) {
+		return nil, ErrPastDateTime
+	}
+
+	combined := time.Date(
+		parsedDate.Year(), parsedDate.Month(), parsedDate.Day(),
+		parsedTime.Hour(), parsedTime.Minute(), parsedTime.Second(), 0,
+		time.Local,
+	)
+
+	if !IsWithinBusinessHours(combined) {
+		return nil, ErrOutsideBusinessHours
 	}
 
 	err = EnsureSlotIsFree(db, parsedDate, parsedTime)
@@ -40,8 +55,12 @@ func UpdateScheduleService(db *sql.DB, id, userID, date, scheduledTime string) (
 	}
 
 	if err = ValidateScheduleInput(userID, parsedDate, parsedTime); err != nil {
-        return nil, err
-    }
+		return nil, err
+	}
+
+	if IsInThePast(parsedDate, parsedTime) {
+		return nil, ErrPastDateTime
+	}
 
 	if err = UpdateSchedule(db, id, parsedDate, parsedTime); err != nil {
 		return nil, err
