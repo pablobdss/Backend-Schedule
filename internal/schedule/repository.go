@@ -24,7 +24,14 @@ func EnsureSlotIsFree(db *sql.DB, date, scheduledTime time.Time) error {
 func InsertSchedule(db *sql.DB, userID string, date, scheduledTime time.Time) (string, error) {
 	var id string
 
-	if err := db.QueryRow("INSERT INTO schedules (user_id, date, time)VALUES ($1, $2, $3)RETURNING id", userID, date, scheduledTime).Scan(&id); err != nil {
+	if err := db.QueryRow(`
+		INSERT INTO schedules 
+		(user_id, date, time)
+		VALUES ($1, $2, $3)
+		RETURNING id`, 
+	userID, date, scheduledTime,
+	).Scan(&id); 
+	err != nil {
 		return "", err
 	}
 
