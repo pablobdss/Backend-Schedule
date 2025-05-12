@@ -11,7 +11,7 @@ Esta API permite:
 - Cadastro e login de usuários com senha criptografada
 - Geração de JWT para autenticação
 - Middleware de proteção de rotas
-- Agendamentos (nas próximas versões)
+- Agendamentos
 
 Esta é a **Versão 1 (MVP Backend)**, focada em fundações sólidas:
 estrutura de pastas, autenticação e integração com PostgreSQL.
@@ -24,9 +24,8 @@ estrutura de pastas, autenticação e integração com PostgreSQL.
 - ✅ Conexão com banco PostgreSQL via Docker
 - ✅ Registro e login de usuários com validação
 - ✅ Middleware de autenticação com JWT
-- ✅ Rota protegida `/dashboard` testada
-- 🔜 CRUD e Validações de agendamentos
-
+- ✅ CRUD de agendamentos (usando Chi para roteamento de métodos HTTP)  
+- ✅ Validações (impedir slots sobrepostos, bloquear agendamentos em datas passadas, impor horário de 08:00 às 18:00)
 ---
 
 ## 📂 Estrutura de Pastas (V1)
@@ -36,6 +35,7 @@ estrutura de pastas, autenticação e integração com PostgreSQL.
 - `internal/user` # Lógica de negócio, handlers, serviços
 - `internal/auth` # Hash e Verify da senha | Geração e validação de JWT
 - `internal/middleware` # Middlewares de autenticação, logger, etc
+- `internal/schedule` – handlers, services, repo e utils de agendamentos 
 - `pkg/models` # Structs e DTOs compartilhados
 - `docker-compose.yaml`  # Serviço PostgreSQL
 
@@ -75,26 +75,20 @@ estrutura de pastas, autenticação e integração com PostgreSQL.
 
 ---
 
-## 📬 Endpoints (Versão 1)
+## 📬 Endpoints (Version 1)
 
-### POST /register
-```json
-{
-  "name": "João Barber",
-  "email": "joao@example.com",
-  "password": "secure123"
-}
-```
-### POST /login
-``` json
-{
-  "email": "seu@example.com",
-  "password": "suapassword123"
-}
-```
-### GET /dashboard
-  Requer Authorization: Bearer <token>
+### Public
+- `POST /register`  
+- `POST /login`  
 
+### Protected (header `Authorization: Bearer <token>`)
+- `GET  /dashboard`  
+- **Appointments CRUD**  
+  - `POST   /schedules`  
+  - `GET    /schedules`  
+  - `PUT    /schedules/{id}`  
+  - `DELETE /schedules/{id}`
+  
 ---
 
 ## 🐳 Docker
