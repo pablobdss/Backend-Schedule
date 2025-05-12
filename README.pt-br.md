@@ -25,7 +25,7 @@ estrutura de pastas, autenticação e integração com PostgreSQL.
 - ✅ Registro e login de usuários com validação
 - ✅ Middleware de autenticação com JWT
 - ✅ CRUD de agendamentos (usando Chi para roteamento de métodos HTTP)  
-- 🔄 Validações (impedir slots sobrepostos, bloquear agendamentos em datas passadas, impor horário de 08:00 às 18:00) e logs de erro estruturados (via middleware Chi)
+- ✅ Validações (impedir slots sobrepostos, bloquear agendamentos em datas passadas, impor horário de 08:00 às 18:00)
 ---
 
 ## 📂 Estrutura de Pastas (V1)
