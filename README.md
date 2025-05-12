@@ -26,7 +26,7 @@ folder structure, authentication, and PostgreSQL integration.
 - ✅ JWT-based authentication middleware
 - ✅ Protected `/dashboard` route tested
 - ✅ Appointment CRUD (using Chi router for HTTP method matching)
-- 🔄 Validations (no overlapping slots, past‐date bookings, enforce 08:00‑18:00) & structured error logging
+- ✅ Validations (no overlapping slots, past‐date bookings, enforce 08:00‑18:00)
 
 ---
 
