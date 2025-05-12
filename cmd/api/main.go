@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
@@ -40,4 +41,18 @@ func main() {
 	log.Println("Server running on :8080")
 
 	http.ListenAndServe(":8080", r)
+}
+
+func init() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Erro ao carregar .env")
+	}
+
+	loc, err := time.LoadLocation("America/Sao_Paulo")
+	if err != nil {
+		log.Fatalf("failed to load location: %v", err)
+	}
+
+	time.Local = loc
 }
